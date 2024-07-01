@@ -1,4 +1,4 @@
-.footer{
+.footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,14 +8,14 @@
   padding-bottom: 2rem;
 }
 
-.footer-btn p{
+.footer-btn p {
   box-sizing: border-box;
   font-family: var(--font-family);
   font-size: 18px;
-  line-height: 21px; 
-  color: #FFFFFF;
+  line-height: 21px;
+  color: #ffffff;
 }
-.footer-links{
+.footer-links {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -25,7 +25,7 @@
   width: 100%;
   text-align: left;
 }
-.footer-links div{
+.footer-links div {
   width: 250px;
   margin: 1rem;
 }
@@ -35,32 +35,32 @@
   align-items: center;
   justify-content: center;
 }
-.footer-links_logo div{
+.footer-links_logo div {
   display: flex;
   align-items: center;
   position: relative;
 }
-.footer-links_logo div h3{
+.footer-links_logo div h3 {
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .footer-links_logo img {
-  width: 32px;
+  width: 40px;
   height: 32px;
   margin-right: 4px;
 }
-.footer-links_logo p{
+.footer-links_logo p {
   font-family: var(--font-family);
   font-weight: bold;
   font-size: 18px;
   line-height: 17px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .footer-links_logo input {
-  background: #1B1A21;
+  background: #1b1a21;
   border-radius: 10px;
   border: none;
   padding: 13px;
@@ -71,7 +71,7 @@
   line-height: 105.7%;
   outline: none;
 }
-.footer-links_logo button{
+.footer-links_logo button {
   background: var(--primary-btn);
   border: none;
   border-radius: 10px;
@@ -79,36 +79,36 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 12px 18px;
   white-space: nowrap;
   position: absolute;
   right: -2rem;
 }
 
-.footer-links_div{
+.footer-links_div {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
 }
-.footer-links_div h4{
+.footer-links_div h4 {
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
-.footer-links_div p{
+.footer-links_div p {
   font-family: var(--font-family);
   font-weight: normal;
   font-size: 16px;
   line-height: 26px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0.5rem 0;
   cursor: pointer;
 }
-.footer-copyright{
+.footer-copyright {
   margin-top: 2rem;
   text-align: center;
   width: 100%;
@@ -117,42 +117,42 @@
   border-top: 1px solid rgba(165, 165, 165, 0.1);
   padding-top: 2rem;
 }
-.footer-copyright p{
+.footer-copyright p {
   font-family: var(--font-family);
   font-weight: 600;
-font-size: 16px;
-line-height: 24px;
-  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
 }
-.footer-icon{
- margin-inline: 10px;
+.footer-icon {
+  margin-inline: 10px;
 }
 @media screen and (max-width: 850px) {
   .footer-heading h1 {
-      font-size: 44px;
-      line-height: 50px;
+    font-size: 44px;
+    line-height: 50px;
   }
 }
 
 @media screen and (max-width: 550px) {
   .footer-heading h1 {
-      font-size: 34px;
-      line-height: 42px;
+    font-size: 34px;
+    line-height: 42px;
   }
 
   .footer-links div {
-      margin: 1rem 0;
+    margin: 1rem 0;
   }
 
   .footer-btn p {
-      font-size: 14px;
-      line-height: 20px;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .footer-heading h1 {
-      font-size: 27px;
-      line-height: 38px;
+    font-size: 27px;
+    line-height: 38px;
   }
 }
