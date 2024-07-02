@@ -1,8 +1,17 @@
-# React + Vite
+# GameT MArketplace Repo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the implementation of the OnchainKit and the code for the GameT online Marketplace that connects with the GameT gameplay.
 
-Currently, two official plugins are available:
+This repository frontend is hosted at [game-t-alpha.vercel.app](https://game-t-alpha.vercel.app).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To know more about GameT - the game where speed meets blockchain, go to the detailed documentation of GameT and how this Marketplace is used which can be found [here](https://github.com/MayowaObisesan/gamet/blob/main/README.md).
+
+## Screenshots of the Marketplace
+
+![Image](./public/GameT-logo.jpeg)
+
+![Image](./public/Screenshots/GameTMk1.png)
+
+![Image](./public/Screenshots/GameTMk2.png)
+
+![Image](./public/Screenshots/GameTMk3.png)
