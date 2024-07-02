@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import profile_banner from "../../assets/profile_banner.png";
-import profile_pic from "../../assets/profile.jpg";
+import profile_pic from "../../assets/avatar.png";
 import Bids from "../../components/bids/Bids";
 import { useGametContext } from "../../context";
 import { useReadContract } from "thirdweb/react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { CgSmartHomeBoiler } from "react-icons/cg";
 
 const Profile = () => {
-  const { connectedUserDetails, contractObj, connectedAccount } =
-    useGametContext();
+  const {
+    connectedUserDetails,
+    contractObj,
+    connectedAccount,
+    smartAccount,
+    smartAccountFunc,
+  } = useGametContext();
   const [NftData, setNftData] = useState(null);
   const [CoinData, setCoinData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(null);
   const getNftData = async (id) => {
     const data = await axios.get(
       `https://moccasin-many-grasshopper-363.mypinata.cloud/ipfs/QmcM2nyLjW8dpQH1ZKdnFifDKsr2mcfYD9nEDFLwTyHpfF/${id}.json`
@@ -26,30 +32,37 @@ const Profile = () => {
     method: "balanceOfBatch",
     params: [
       [
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
-        "0x437c34161c76906bffdCC4EF18969Cff4E571F94",
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
+        loading,
       ],
       [1, 3, 5, 8, 10, 20, 30, 40, 50, 60],
     ],
   });
+  const sm = async () => {
+    const t = await smartAccountFunc();
+    setLoading(t.address);
+  };
+
+  console.log(loading);
+
+  sm();
 
   const { data: CoinBalances } = useReadContract({
     contract: contractObj,
     method: "balanceOf",
-    params: ["0x437c34161c76906bffdCC4EF18969Cff4E571F94", 2],
+    params: [loading, 2],
   });
 
-  console.log(NftData);
-  console.log(CoinData);
   console.log(NftBalances);
+
   console.log(CoinBalances);
 
   useEffect(() => {
@@ -57,20 +70,21 @@ const Profile = () => {
     const data = [];
     const f = async () => {
       for (let i = 0; i < contractIds.length; i++) {
-        if (Number(NftBalances[i]) != 0) {
+        if (NftBalances && Number(NftBalances[i]) != 0) {
+          console.log(CoinBalances);
           let d = await getNftData(contractIds[i]);
           data.push(d.data);
+          setNftData(data);
         }
       }
     };
     f();
-    setNftData(data);
-  }, []);
+  }, [NftBalances]);
 
   useEffect(() => {
     const contractIds = 2;
     const data = [];
-    if (Number(CoinBalances) != 0) {
+    if (CoinBalances && Number(CoinBalances) != 0) {
       const f = async () => {
         const d = await getNftData(contractIds);
         data.push(d.data);
@@ -78,10 +92,11 @@ const Profile = () => {
       };
       f();
     }
-  }, []);
+  }, [CoinBalances]);
 
-  useEffect(() => {}, [CoinData, NftData]);
   useEffect(() => {}, [NftData]);
+  useEffect(() => {}, [CoinData]);
+  useEffect(() => {}, [loading]);
 
   return (
     <div className="profile section__padding">
@@ -119,7 +134,7 @@ const Profile = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-white">Loading...</p>
+              <p className="text-white">No Data Yet...</p>
             )}
           </div>
         </div>
@@ -147,7 +162,7 @@ const Profile = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-white">Loading...</p>
+              <p className="text-white">No Data Yet...</p>
             )}
           </div>
         </div>

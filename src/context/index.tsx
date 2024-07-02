@@ -21,9 +21,10 @@ interface IGametContext {
     connectedUserDetails: any;
     connectedUserHasAccount: boolean;
     setconnectedUserHasAccount: any;
-    readPlayerDataMap: any;
     connectedAccount: any;
+    smartAccount: any;
     contractObj: any;
+    smartAccountFunc: any;
 }
 
 const GametContext = createContext<IGametContext>({
@@ -33,9 +34,10 @@ const GametContext = createContext<IGametContext>({
     setconnectedUserDetails: null,
     connectedUserHasAccount: false,
     setconnectedUserHasAccount: null,
-    readPlayerDataMap: null,
     connectedAccount: null,
+    smartAccount: null,
     contractObj: null,
+    smartAccountFunc: null,
 });
 
 const wallet = smartWallet({
@@ -53,6 +55,7 @@ const GametProvider: React.FC<GametProviderProps> = ({
     const connectedAccount = useActiveAccount();
     const [connectedUser, setconnectedUser] = useState<any>()
     const [connectedUserDetails, setconnectedUserDetails] = useState<any>()
+    const [smartAccount, setSmartAccount] = useState<any>()
     const [connectedUserHasAccount, setconnectedUserHasAccount] = useState<boolean>(false)
     const contractObj = getContract({
         client,
@@ -60,26 +63,14 @@ const GametProvider: React.FC<GametProviderProps> = ({
         address: ContractAddress,
         abi
     })
-    const { data: readPlayerDataMap, isLoading } = useReadContract({
-        contract: contractObj,
-        method: "PlayerDataMap",
-        params: [connectedAccount?.address]
-    });
-    // const { data: readPlayerDataMap } = useReadContract({
-    //     abi,
-    //     address: ContractAddress,
-    //     functionName: "PlayerDataMap",
-    //     args: [connectedAccount?.address],
-    // });
 
-
-    const account = (async () => {
+    const smartAccountFunc = async () => {
         const t = await wallet.connect({
             client,
             personalAccount: connectedAccount!,
         })
-    })();
-
+        return t
+    };
 
     return (
         <GametContext.Provider
@@ -90,9 +81,10 @@ const GametProvider: React.FC<GametProviderProps> = ({
                 setconnectedUserDetails,
                 connectedUserHasAccount,
                 setconnectedUserHasAccount,
-                readPlayerDataMap,
                 connectedAccount,
-                contractObj
+                smartAccount,
+                contractObj,
+                smartAccountFunc
             }}
         >
             {children}

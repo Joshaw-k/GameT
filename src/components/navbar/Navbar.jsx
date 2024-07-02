@@ -19,7 +19,11 @@ import {
 } from "@coinbase/onchainkit/identity";
 import { color } from "@coinbase/onchainkit/theme";
 import { useGametContext } from "../../context";
-import { ConnectButton, useSendTransaction } from "thirdweb/react";
+import {
+  ConnectButton,
+  useReadContract,
+  useSendTransaction,
+} from "thirdweb/react";
 import { baseSepolia } from "thirdweb/chains";
 import { client } from "../../client";
 import { prepareContractCall } from "thirdweb";
@@ -27,16 +31,32 @@ import { prepareContractCall } from "thirdweb";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [user, setUser] = useState(false);
+  const [loading, setLoading] = useState(null);
   const {
     connectedUserDetails,
     connectedUserHasAccount,
     setconnectedUserHasAccount,
     setconnectedUser,
     setconnectedUserDetails,
-    readPlayerDataMap,
     connectedAccount,
     contractObj,
+    smartAccountFunc,
   } = useGametContext();
+
+  const sm = async () => {
+    const t = await smartAccountFunc();
+    setLoading(t.address);
+  };
+
+  console.log(loading);
+
+  sm();
+
+  const { data: readPlayerDataMap, isLoading } = useReadContract({
+    contract: contractObj,
+    method: "PlayerDataMap",
+    params: [loading],
+  });
 
   const { mutate: sendTransaction } = useSendTransaction();
 
@@ -52,6 +72,8 @@ const Navbar = () => {
     sendTransaction(transaction);
   };
 
+  console.log(connectedUserDetails);
+
   const Menu = () => (
     <>
       <Link to="/explore">
@@ -64,10 +86,12 @@ const Navbar = () => {
       )}
     </>
   );
-  if (connectedUserDetails?.[0] != "") {
-    setconnectedUserHasAccount(true);
-  } else {
-    setconnectedUserHasAccount(false);
+  if (connectedUserDetails) {
+    if (connectedUserDetails?.[0] != "") {
+      setconnectedUserHasAccount(true);
+    } else {
+      setconnectedUserHasAccount(false);
+    }
   }
 
   useEffect(() => {
