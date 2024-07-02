@@ -193,20 +193,26 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <Link to="/login">
-                    <button
-                      type="button"
-                      className="primary-btn"
-                      onClick={handleLogin}
-                    >
-                      Sign In
-                    </button>
-                  </Link>
-                  <Link to="/register">
-                    <button type="button" className="secondary-btn">
-                      Sign Up
-                    </button>
-                  </Link>
+                  <ConnectButton
+                    client={client}
+                    chain={baseSepolia}
+                    walletConnect={{
+                      projectId: "7f49c7e89e54528522eef8334c58506e",
+                    }}
+                    connectButton={{
+                      className: "connect-button",
+                      label: "Sign in",
+                      style: {
+                        display: "flex",
+                        background: `linear-gradient(101.12deg,#eb1484 27.35%,#c91cc3 99.99%,#c81cc5 100%,#c81cc5 100%)`,
+                        color: "white",
+                        borderRadius: ".8rem",
+                        height: "2.75rem",
+                        width: "auto",
+                        fontWeight: "bolder",
+                      },
+                    }}
+                  />
                 </>
               )}
             </div>
