@@ -8,6 +8,7 @@ import { useReadContract } from "thirdweb/react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { CgSmartHomeBoiler } from "react-icons/cg";
+import logo from "../../assets/coins.png";
 
 const Profile = () => {
   const {
@@ -127,7 +128,10 @@ const Profile = () => {
                         </Link>
                       </div>
                       <div className="bids-card-bottom">
-                        <p className="text-xs">{item.description}</p>
+                        <p className="tokenBalance">
+                          <img src={logo} alt="" />
+                          {CoinBalances ? Number(CoinBalances) : 0}GMT
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -154,7 +158,7 @@ const Profile = () => {
                           <p className="bids-title">{item.name}</p>
                         </Link>
                       </div>
-                      <div className="bids-card-bottom">
+                      <div className="bidss-card-bottom">
                         <p className="text-xs">{item.description}</p>
                       </div>
                     </div>
