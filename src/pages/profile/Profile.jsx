@@ -127,7 +127,7 @@ const Profile = () => {
                           <p className="bids-title">{item.name}</p>
                         </Link>
                       </div>
-                      <div className="bids-card-bottom">
+                      <div className="bides-card-bottom">
                         <p className="tokenBalance">
                           <img src={logo} alt="" />
                           {CoinBalances ? Number(CoinBalances) : 0}GMT

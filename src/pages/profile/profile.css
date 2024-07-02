@@ -152,11 +152,11 @@
   color: #ffffff;
   margin-top: 15px;
 }
-.bids-card-bottom {
+.bides-card-bottom {
   display: flex;
   justify-content: space-between;
 }
-.bids-card-bottom p {
+.bides-card-bottom p {
   font-family: var(--font-family);
   font-weight: 800;
   font-size: 18px;
@@ -180,13 +180,13 @@
   color: #ffffff;
   /* text-align: right; */
 }
-.bids-card-bottom img {
+.bides-card-bottom img {
   width: 35px;
 }
-.bids-card-bottom p:last-child {
+.bides-card-bottom p:last-child {
   font-weight: normal;
 }
-.bids-card-bottom span {
+.bides-card-bottom span {
   font-weight: normal;
 }
 .load-more {
@@ -238,7 +238,7 @@
     line-height: 18px;
     margin-top: 5px;
   }
-  .bids-card-bottom p {
+  .bides-card-bottom p {
     font-size: 10px;
     line-height: 15px;
   }
